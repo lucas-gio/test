@@ -4,15 +4,14 @@ import { useNavigate } from 'react-router-dom';
 const MainPage = () => {
     const navigate = useNavigate();
 
-    const handleAdminClick = () => {
-        navigate('/wtf');
+    const handleWtf2Click = () => {
+        navigate('/wtf2');
     };
 
     return (
         <div className="container">
-            <h2>Listado de radios</h2>
-            <button className="button is-link" onClick={handleAdminClick}>
-                Administrar Radios
+            <button className="button is-link" onClick={handleWtf2Click}>
+                Administrar Radios (WTF2)
             </button>
         </div>
     );
