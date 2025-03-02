@@ -1,0 +1,9 @@
+com\newradiogio\model\Country.class
+com\newradiogio\model\Language.class
+com\newradiogio\repository\RadioRepository.class
+com\newradiogio\Application.class
+com\newradiogio\model\Genre.class
+com\newradiogio\service\RadioService.class
+com\newradiogio\controller\RadioController.class
+com\newradiogio\model\Radio.class
+com\newradiogio\config\DataInitializer.class
