@@ -1,30 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import Login from './Login';
-import Admin from './Admin';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import MainPage from './components/MainPage';
+import RadioAdmin from './components/RadioAdmin';
 
-function App() {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const bypassLogin = true; // Add this flag to bypass login
-
-    useEffect(() => {
-        if (bypassLogin) {
-            setIsAuthenticated(true);
-        }
-    }, [bypassLogin]);
-
-    const handleLogin = (username, password) => {
-        if (username === 'lucas' && password === 'lucas1234') {
-            setIsAuthenticated(true);
-        } else {
-            alert('Invalid username or password');
-        }
-    };
-
+const App = () => {
     return (
-        <div>
-            {isAuthenticated ? <Admin /> : <Login onLogin={handleLogin} />}
-        </div>
+        <Router>
+            <Routes>
+                <Route path="/" element={<MainPage />} />
+                <Route path="/wtf" element={<RadioAdmin />} />
+            </Routes>
+        </Router>
     );
-}
+};
 
 export default App;

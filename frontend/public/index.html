@@ -4,77 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Radio Management</title>
-    <script src="%PUBLIC_URL%/jquery-3.6.0.min.js"></script> <!-- Add jQuery -->
-    <script src="%PUBLIC_URL%/jquery.dataTables.min.js"></script> <!-- Add DataTables JS -->
-    <link rel="stylesheet" href="%PUBLIC_URL%/bulma.min.css">
-    <link rel="stylesheet" href="%PUBLIC_URL%/index.css">
-    <link rel="stylesheet" href="%PUBLIC_URL%/jquery.dataTables.min.css"> <!-- Add DataTables CSS -->
+    <!-- Bulma CSS desde CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <!-- jQuery desde CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div id="root"></div> <!-- Ensure the React root element exists -->
-    <script>
-        jQuery(document).ready(function() {
-            var table = jQuery('#dataTable').DataTable({
-                ajax: {
-                    url: '/api/radios', // Ensure this endpoint is correct
-                    dataSrc: ''
-                },
-                columns: [
-                    { data: 'id' },
-                    { data: 'name' },
-                    { data: 'mainUrl' },
-                    { data: 'url1' },
-                    { data: 'url2' },
-                    { data: 'url3' },
-                    {
-                        data: null,
-                        className: "center",
-                        defaultContent: '<button class="button is-small is-info edit-btn">Edit</button> <button class="button is-small is-danger delete-btn">Delete</button>'
-                    }
-                ]
-            });
-
-            jQuery('#entryForm').on('submit', function(e) {
-                e.preventDefault();
-                var id = jQuery('#entryId').val();
-                var name = jQuery('#entryName').val();
-                var mainUrl = jQuery('#entryMainUrl').val();
-                var url1 = jQuery('#entryUrl1').val();
-                var url2 = jQuery('#entryUrl2').val();
-                var url3 = jQuery('#entryUrl3').val();
-                jQuery.ajax({
-                    url: '/api/radios',
-                    method: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify({ id: id, name: name, mainUrl: mainUrl, url1: url1, url2: url2, url3: url3 }),
-                    success: function() {
-                        table.ajax.reload();
-                        jQuery('#entryForm')[0].reset();
-                    }
-                });
-            });
-
-            jQuery('#dataTable tbody').on('click', '.delete-btn', function() {
-                var data = table.row(jQuery(this).parents('tr')).data();
-                jQuery.ajax({
-                    url: '/api/radios/' + data.id,
-                    method: 'DELETE',
-                    success: function() {
-                        table.ajax.reload();
-                    }
-                });
-            });
-
-            jQuery('#dataTable tbody').on('click', '.edit-btn', function() {
-                var data = table.row(jQuery(this).parents('tr')).data();
-                jQuery('#entryId').val(data.id);
-                jQuery('#entryName').val(data.name);
-                jQuery('#entryMainUrl').val(data.mainUrl);
-                jQuery('#entryUrl1').val(data.url1);
-                jQuery('#entryUrl2').val(data.url2);
-                jQuery('#entryUrl3').val(data.url3);
-            });
-        });
-    </script>
 </body>
 </html>
